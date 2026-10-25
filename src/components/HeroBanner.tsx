@@ -43,6 +43,8 @@ const HeroBanner: React.FC = () => {
             <img
               src={b.image}
               alt={b.title}
+              loading={i === 0 ? 'eager' : 'lazy'}
+              fetchPriority={i === 0 ? 'high' : 'low'}
               style={{
                 width: '100%',
                 height: '100%',

@@ -1,47 +1,54 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import HeroBanner from '../components/HeroBanner';
 import CategorySection from '../components/CategorySection';
-import PromoBanners from '../components/PromoBanners';
-import ShopByOccasion from '../components/ShopByOccasion';
-import ShopYourSize from '../components/ShopYourSize';
-import ShopByPrice from '../components/ShopByPrice';
-import TrendingSection from '../components/TrendingSection';
-import BrandStory from '../components/BrandStory';
-import NewsletterSection from '../components/NewsletterSection';
-import SeoSection from '../components/SeoSection';
+
+// Lazy-load everything below the fold
+const PromoBanners     = lazy(() => import('../components/PromoBanners'));
+const ShopByOccasion   = lazy(() => import('../components/ShopByOccasion'));
+const ShopYourSize     = lazy(() => import('../components/ShopYourSize'));
+const ShopByPrice      = lazy(() => import('../components/ShopByPrice'));
+const TrendingSection  = lazy(() => import('../components/TrendingSection'));
+const BrandStory       = lazy(() => import('../components/BrandStory'));
+const NewsletterSection = lazy(() => import('../components/NewsletterSection'));
+const SeoSection       = lazy(() => import('../components/SeoSection'));
+
+// Minimal skeleton placeholder while lazy chunks load
+const Skeleton: React.FC<{ height?: string }> = ({ height = '200px' }) => (
+  <div style={{ height, background: '#f5f5f0', width: '100%' }} />
+);
 
 const Home: React.FC = () => {
   return (
     <main>
-      {/* 1. Hero Banner Carousel */}
+      {/* Above fold — loaded immediately */}
       <HeroBanner />
-
-      {/* 2. Shop by Category circles */}
       <CategorySection />
 
-      {/* 3. Promo Banners (Last Few + Up to 30% off) */}
-      <PromoBanners />
-
-      {/* 4. Shop by Style/Occasion */}
-      <ShopByOccasion />
-
-      {/* 5. Shop Your Size */}
-      <ShopYourSize />
-
-      {/* 6. Next Level Prices / Shop by Price */}
-      <ShopByPrice />
-
-      {/* 7. Trending product grid with tabs */}
-      <TrendingSection />
-
-      {/* 8. Brand story section */}
-      <BrandStory />
-
-      {/* 9. Newsletter */}
-      <NewsletterSection />
-
-      {/* 10. SEO content section (like original) */}
-      <SeoSection />
+      {/* Below fold — code-split and lazy loaded */}
+      <Suspense fallback={<Skeleton height="320px" />}>
+        <PromoBanners />
+      </Suspense>
+      <Suspense fallback={<Skeleton height="220px" />}>
+        <ShopByOccasion />
+      </Suspense>
+      <Suspense fallback={<Skeleton height="120px" />}>
+        <ShopYourSize />
+      </Suspense>
+      <Suspense fallback={<Skeleton height="280px" />}>
+        <ShopByPrice />
+      </Suspense>
+      <Suspense fallback={<Skeleton height="400px" />}>
+        <TrendingSection />
+      </Suspense>
+      <Suspense fallback={<Skeleton height="300px" />}>
+        <BrandStory />
+      </Suspense>
+      <Suspense fallback={<Skeleton height="160px" />}>
+        <NewsletterSection />
+      </Suspense>
+      <Suspense fallback={<Skeleton height="200px" />}>
+        <SeoSection />
+      </Suspense>
     </main>
   );
 };

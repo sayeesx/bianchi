@@ -64,6 +64,7 @@ const CategorySection: React.FC = () => {
                   src={cat.image}
                   alt={cat.label}
                   className="cat-btn-img"
+                  loading="lazy"
                 />
               </div>
             </a>

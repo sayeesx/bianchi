@@ -51,6 +51,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           alt={product.name}
           className="absolute inset-0 w-full h-full product-img-primary"
           style={{ objectFit: 'cover', objectPosition: 'top center' }}
+          loading="lazy"
         />
         {/* Hover image */}
         {product.hoverImage && (
@@ -59,6 +60,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             alt={product.name}
             className="absolute inset-0 w-full h-full product-img-secondary"
             style={{ objectFit: 'cover', objectPosition: 'top center' }}
+            loading="lazy"
           />
         )}
 
