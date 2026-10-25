@@ -19,8 +19,6 @@ const HeroBanner: React.FC = () => {
     return () => clearInterval(interval);
   }, [next]);
 
-  const banner = heroBanners[current];
-
   return (
     <div className="hero-banner-wrapper">
       {/* Slides */}
@@ -56,29 +54,6 @@ const HeroBanner: React.FC = () => {
           </picture>
         </div>
       ))}
-
-      {/* Text overlay */}
-      <div
-        className="absolute inset-0 flex flex-col justify-end hero-text-overlay"
-        style={{
-          zIndex: 2,
-          background: 'linear-gradient(to top, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.1) 55%, transparent 100%)',
-        }}
-      >
-        <div className="hero-content">
-          <h1 className="hero-title">{banner.title}</h1>
-          {banner.subtitle && (
-            <p className="hero-subtitle">{banner.subtitle}</p>
-          )}
-          <a
-            href={banner.href}
-            className="hero-cta"
-            onClick={e => e.preventDefault()}
-          >
-            {banner.cta || 'SHOP NOW'}
-          </a>
-        </div>
-      </div>
 
       {/* Dots */}
       <div className="hero-dots" style={{ zIndex: 3 }}>

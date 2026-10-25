@@ -1,4 +1,10 @@
 @import "tailwindcss";
+@import "@fontsource/libre-franklin/400.css";
+@import "@fontsource/libre-franklin/500.css";
+@import "@fontsource/libre-franklin/600.css";
+@import "@fontsource/libre-franklin/700.css";
+@import "@fontsource/libre-franklin/800.css";
+@import "@fontsource/libre-franklin/900.css";
 
 :root {
   --color-bianchi-black: #1a1a1a;
@@ -27,7 +33,7 @@ html {
 }
 
 body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Libre Franklin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   background-color: #ffffff;
   color: var(--color-bianchi-text);
   -webkit-font-smoothing: antialiased;
@@ -35,9 +41,9 @@ body {
   overflow-x: hidden;
 }
 
-/* Force Helvetica everywhere */
+/* Force Libre Franklin everywhere */
 *, *::before, *::after {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  font-family: 'Libre Franklin', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
 }
 
 /* ===== SCROLLBAR ===== */
@@ -158,25 +164,25 @@ body {
 }
 
 /* ===== CATEGORY SECTION ===== */
-.category-section {
+.cat-section {
   background-color: #ffffff;
-  padding: 24px 0 0;
+  padding: 28px 0 24px;
 }
 
-.category-section-inner {
+.cat-inner {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 16px;
 }
 
-.category-header {
+.cat-header {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   margin-bottom: 20px;
 }
 
-.category-eyebrow {
+.cat-eyebrow {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.15em;
@@ -185,7 +191,7 @@ body {
   margin-bottom: 2px;
 }
 
-.category-title {
+.cat-title {
   font-size: 22px;
   font-weight: 900;
   letter-spacing: -0.01em;
@@ -194,89 +200,87 @@ body {
   line-height: 1;
 }
 
-.category-underline {
+.cat-underline {
   width: 36px;
   height: 3px;
   background-color: #e63329;
   margin-top: 6px;
 }
 
-/* 5-item centered grid — equal gaps on both mobile and desktop */
-.category-grid {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 12px;
+/* 3-column grid, wraps to 2 rows */
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid #e0e0e0;
 }
 
-.category-card {
-  flex: 1 1 0;
-  min-width: 0;
-  max-width: 200px;
+/* Each category button cell */
+.cat-btn {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   text-decoration: none;
   color: inherit;
+  border-right: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 14px 12px 0;
+  background-color: #ffffff;
+  transition: background 0.15s ease;
+  overflow: hidden;
 }
 
-@media (max-width: 480px) {
-  .category-grid {
-    gap: 8px;
-  }
+/* Remove right border from last column */
+.cat-btn:nth-child(3n) {
+  border-right: none;
 }
 
-.category-card-label-row {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-bottom: 8px;
+/* Remove bottom border from last row */
+.cat-btn:nth-last-child(-n+3) {
+  border-bottom: none;
 }
 
-.category-card-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+.cat-btn:hover {
+  background-color: #f8f8f5;
+}
+
+.cat-btn-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
   color: #1a1a1a;
   text-transform: uppercase;
-  white-space: nowrap;
+  margin-bottom: 8px;
+  padding-left: 2px;
 }
 
-.category-card-badge {
-  display: inline-block;
-  background-color: #f0f0eb;
-  border: 1px solid #d0d0cb;
-  color: #999;
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  padding: 2px 5px;
-  border-radius: 10px;
-  white-space: nowrap;
-}
-
-.category-card-img-wrap {
+.cat-btn-img-wrap {
   width: 100%;
-  aspect-ratio: 3/4;
+  aspect-ratio: 1/1;
   overflow: hidden;
   background-color: #f5f5f0;
 }
 
-.category-card-img {
+.cat-btn-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  object-fit: contain;
+  object-position: center bottom;
   transition: transform 0.3s ease;
 }
-.category-card:hover .category-card-img {
+
+.cat-btn:hover .cat-btn-img {
   transform: scale(1.04);
 }
 
-.category-shop-all {
-  padding: 16px 0 20px;
+.cat-shop-all {
+  padding: 16px 0 4px;
 }
 
-.category-shop-all-link {
+.cat-shop-all-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -286,19 +290,42 @@ body {
   padding-bottom: 1px;
   text-transform: uppercase;
 }
-.category-shop-all-link:hover {
+.cat-shop-all-link:hover {
   opacity: 0.7;
 }
 
-/* Desktop category: section padding */
+.cat-shop-all-icon {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
 @media (min-width: 768px) {
-  .category-section {
-    padding: 32px 0 24px;
+  .cat-section {
+    padding: 36px 0 28px;
   }
-  .category-card-label {
-    font-size: 11px;
+  .cat-btn-label {
+    font-size: 12px;
+  }
+  /* On desktop switch to 6 columns in one row */
+  .cat-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .cat-btn:nth-child(3n) {
+    border-right: 1px solid #e0e0e0;
+  }
+  .cat-btn:nth-last-child(-n+3) {
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .cat-btn:nth-child(6n) {
+    border-right: none;
+  }
+  .cat-btn:nth-last-child(-n+6) {
+    border-bottom: none;
   }
 }
+
+/* ===== OLD CATEGORY SECTION (keep for reference, now unused) ===== */
 
 /* ===== NEVER BEFORE PRICES (replaces PromoBanners) ===== */
 .never-before-section {
