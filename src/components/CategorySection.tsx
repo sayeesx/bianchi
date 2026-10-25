@@ -15,7 +15,6 @@ const shopByCategories = [
     label: 'PLUS SIZE',
     image: 'https://d2d5n4ft74bagm.cloudfront.net/media/featured-category/2bc1ad6e-4a4c-4fe4-955b-65d28e5d8b36/1791971554.jpeg',
     href: '/plus-size',
-    badge: 'IN STORE',
   },
   {
     label: 'SHIRTS',
@@ -42,7 +41,7 @@ const CategorySection: React.FC = () => {
           </div>
         </div>
 
-        {/* 5 category cards — centered, equal gap on both mobile and desktop */}
+        {/* 5 category cards — images only, no text */}
         <div className="category-grid">
           {shopByCategories.map((cat) => (
             <a
@@ -51,14 +50,6 @@ const CategorySection: React.FC = () => {
               className="category-card"
               onClick={e => e.preventDefault()}
             >
-              {/* Label row on top */}
-              <div className="category-card-label-row">
-                <span className="category-card-label">{cat.label}</span>
-                {cat.badge && (
-                  <span className="category-card-badge">{cat.badge}</span>
-                )}
-              </div>
-              {/* Image below */}
               <div className="category-card-img-wrap">
                 <img
                   src={cat.image}

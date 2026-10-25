@@ -372,8 +372,8 @@ body {
 }
 
 .never-before-card-img {
-  width: 52px;
-  height: 60px;
+  width: 80px;
+  height: 96px;
   flex-shrink: 0;
   overflow: hidden;
   background-color: #f0f0eb;
@@ -439,8 +439,8 @@ body {
     border-bottom: none;
   }
   .never-before-card-img {
-    width: 44px;
-    height: 52px;
+    width: 64px;
+    height: 76px;
   }
   .never-before-card-price {
     font-size: 14px;

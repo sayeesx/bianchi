@@ -1,6 +1,5 @@
 import React from 'react';
 
-// Price items matching the reference image
 const priceItems = [
   {
     label: 'BUY 3 TOPWEAR',
@@ -32,14 +31,13 @@ const priceItems = [
 const PromoBanners: React.FC = () => {
   return (
     <section className="never-before-section">
-      {/* Big hero banner with model + "NEVER BEFORE PRICES" text */}
+      {/* Hero banner */}
       <div className="never-before-hero">
         <img
           src="https://d2d5n4ft74bagm.cloudfront.net/media/shop-by-price-card/1b2ea7f5-3edd-4a9c-b8da-c503ca62e9be/1791868919_desktop.jpeg"
           alt="Never Before Prices"
           className="never-before-hero-img"
         />
-        {/* Text overlay — right-aligned like reference */}
         <div className="never-before-text">
           <h2 className="never-before-heading">
             NEVER<br />BEFORE<br />PRICES
@@ -47,7 +45,7 @@ const PromoBanners: React.FC = () => {
         </div>
       </div>
 
-      {/* Price cards row */}
+      {/* Price cards strip */}
       <div className="never-before-cards">
         {priceItems.map((item) => (
           <a
