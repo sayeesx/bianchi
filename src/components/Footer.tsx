@@ -1,20 +1,15 @@
 import React from 'react';
-
-const FacebookIcon = () => (
-  <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-  </svg>
-);
-const InstagramIcon = () => (
-  <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-  </svg>
-);
-const LinkedinIcon = () => (
-  <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
-  </svg>
-);
+import {
+  TfiTruck,
+  TfiReload,
+  TfiShield,
+  TfiLock,
+  TfiFacebook,
+  TfiInstagram,
+  TfiLinkedin,
+  TfiApple,
+  TfiAndroid,
+} from 'react-icons/tfi';
 
 const footerLinks = {
   COMPANY: [
@@ -63,13 +58,13 @@ const Footer: React.FC = () => {
       <div className="footer-trust">
         <div className="footer-trust-grid">
           {[
-            { icon: '🚚', title: 'FREE SHIPPING', sub: 'On orders above ₹999' },
-            { icon: '↩️', title: 'EASY RETURNS', sub: '15-day hassle-free returns' },
-            { icon: '✓', title: '100% AUTHENTIC', sub: 'Original products only' },
-            { icon: '🔒', title: 'SECURE PAYMENT', sub: '100% secure checkout' },
+            { icon: <TfiTruck size={20} />, title: 'FREE SHIPPING', sub: 'On orders above ₹999' },
+            { icon: <TfiReload size={20} />, title: 'EASY RETURNS', sub: '15-day hassle-free returns' },
+            { icon: <TfiShield size={20} />, title: '100% AUTHENTIC', sub: 'Original products only' },
+            { icon: <TfiLock size={20} />, title: 'SECURE PAYMENT', sub: '100% secure checkout' },
           ].map((item, i) => (
             <div key={i} className="footer-trust-item">
-              <span style={{ fontSize: '22px' }}>{item.icon}</span>
+              <span style={{ color: '#1a1a1a', display: 'flex' }}>{item.icon}</span>
               <div>
                 <p style={{ fontSize: '11px', fontWeight: 700, color: '#1a1a1a', letterSpacing: '0.04em' }}>
                   {item.title}
@@ -123,9 +118,9 @@ const Footer: React.FC = () => {
               {section === 'COMPANY' && (
                 <div className="flex items-center gap-3 mt-5">
                   {[
-                    { icon: <FacebookIcon />, href: 'https://facebook.com', label: 'Facebook' },
-                    { icon: <InstagramIcon />, href: 'https://instagram.com', label: 'Instagram' },
-                    { icon: <LinkedinIcon />, href: 'https://linkedin.com', label: 'LinkedIn' },
+                    { icon: <TfiFacebook size={16} />, href: 'https://facebook.com', label: 'Facebook' },
+                    { icon: <TfiInstagram size={16} />, href: 'https://instagram.com', label: 'Instagram' },
+                    { icon: <TfiLinkedin size={16} />, href: 'https://linkedin.com', label: 'LinkedIn' },
                   ].map((social) => (
                     <a
                       key={social.label}
@@ -179,7 +174,7 @@ const Footer: React.FC = () => {
                     }}
                     onClick={e => e.preventDefault()}
                   >
-                    <span style={{ fontSize: '18px' }}>🍎</span>
+                    <TfiApple size={16} />
                     App Store
                   </a>
                   <a
@@ -198,7 +193,7 @@ const Footer: React.FC = () => {
                     }}
                     onClick={e => e.preventDefault()}
                   >
-                    <span style={{ fontSize: '18px' }}>▶</span>
+                    <TfiAndroid size={16} />
                     Play Store
                   </a>
                 </div>

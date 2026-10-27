@@ -40,7 +40,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <div
         className="relative overflow-hidden"
         style={{
-          backgroundColor: '#f5f5f0',
+          backgroundColor: 'transparent',
           aspectRatio: '3/4',
           position: 'relative',
         }}
