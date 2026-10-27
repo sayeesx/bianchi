@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { X, ChevronRight, ChevronDown, Heart, User, MapPin } from 'lucide-react';
+import { ChevronRight, ChevronDown } from 'lucide-react';
+import {
+  TfiClose,
+  TfiHeart,
+  TfiUser,
+  TfiLocationPin,
+} from 'react-icons/tfi';
 import { useStore } from '../context/StoreContext';
 import { navItems } from '../data/navigation';
 
@@ -30,10 +36,11 @@ const MobileNavigation: React.FC = () => {
       >
         {/* Header */}
         <div
-          className="flex items-center justify-between px-4"
+          className="flex items-center justify-between"
           style={{
             height: '56px',
             borderBottom: '1px solid #e8e8e3',
+            padding: '0 20px',
           }}
         >
           <span style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '0.05em' }}>MENU</span>
@@ -42,7 +49,7 @@ const MobileNavigation: React.FC = () => {
             className="flex items-center justify-center"
             style={{ width: '36px', height: '36px' }}
           >
-            <X size={20} color="#1a1a1a" />
+            <TfiClose size={18} color="#1a1a1a" />
           </button>
         </div>
 
@@ -51,13 +58,14 @@ const MobileNavigation: React.FC = () => {
           {navItems.map((item) => (
             <div key={item.label} style={{ borderBottom: '1px solid #f0f0eb' }}>
               <button
-                className="w-full flex items-center justify-between px-4"
+                className="w-full flex items-center justify-between"
                 style={{
                   height: '50px',
                   backgroundColor: 'transparent',
                   border: 'none',
                   cursor: 'pointer',
                   textAlign: 'left',
+                  padding: '0 20px',
                 }}
                 onClick={() => {
                   if (item.megaMenu) {
@@ -131,24 +139,24 @@ const MobileNavigation: React.FC = () => {
         </nav>
 
         {/* Bottom links */}
-        <div style={{ padding: '20px 16px', borderTop: '1px solid #e8e8e3', marginTop: '8px' }}>
+        <div style={{ padding: '20px 20px', borderTop: '1px solid #e8e8e3', marginTop: '8px' }}>
           {[
-            { icon: <User size={17} />, label: 'My Account' },
-            { icon: <Heart size={17} />, label: 'Wishlist' },
-            { icon: <MapPin size={17} />, label: 'Find a Store' },
+            { icon: <TfiUser size={16} />, label: 'My Account' },
+            { icon: <TfiHeart size={16} />, label: 'Wishlist' },
+            { icon: <TfiLocationPin size={16} />, label: 'Find a Store' },
           ].map((item, i) => (
             <button
               key={i}
               className="flex items-center gap-3 w-full"
               style={{
-                padding: '12px 0',
+                padding: '13px 0',
                 background: 'none',
                 border: 'none',
                 cursor: 'pointer',
                 borderBottom: i < 2 ? '1px solid #f0f0eb' : 'none',
               }}
             >
-              <span style={{ color: '#666' }}>{item.icon}</span>
+              <span style={{ color: '#666', display: 'flex' }}>{item.icon}</span>
               <span style={{ fontSize: '13px', fontWeight: 500, color: '#1a1a1a' }}>
                 {item.label}
               </span>

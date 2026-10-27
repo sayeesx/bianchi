@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Search, User, Heart, ShoppingBag, Menu, ChevronDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
+import {
+  TfiSearch,
+  TfiUser,
+  TfiHeart,
+  TfiShoppingCart,
+  TfiAlignLeft,
+} from 'react-icons/tfi';
 import { useStore } from '../context/StoreContext';
 import { navItems } from '../data/navigation';
 import MegaMenu from './MegaMenu';
@@ -45,7 +52,7 @@ const Header: React.FC = () => {
       {/* Desktop Header */}
       <div
         style={{ height: '60px' }}
-        className="hidden md:flex items-center justify-between px-4 max-w-[1440px] mx-auto w-full"
+        className="hidden md:flex items-center justify-between px-8 max-w-[1440px] mx-auto w-full"
       >
         {/* Left: Nav */}
         <nav
@@ -67,7 +74,7 @@ const Header: React.FC = () => {
                   fontWeight: 600,
                   letterSpacing: '0.07em',
                   color: item.badge === 'SALE' ? '#e63329' : '#1a1a1a',
-                  padding: '0 14px',
+                  padding: '0 16px',
                   height: '60px',
                   textDecoration: 'none',
                   whiteSpace: 'nowrap',
@@ -92,10 +99,10 @@ const Header: React.FC = () => {
           ))}
         </nav>
 
-        {/* Center: Logo — higher z-index + white bg to block nav overlap */}
+        {/* Center: Logo */}
         <div
           className="absolute left-1/2 -translate-x-1/2"
-          style={{ zIndex: 10, backgroundColor: '#fff', padding: '0 12px' }}
+          style={{ zIndex: 10, backgroundColor: '#fff', padding: '0 16px' }}
         >
           <a href="/" style={{ textDecoration: 'none' }}>
             <BianchiLogo />
@@ -103,36 +110,36 @@ const Header: React.FC = () => {
         </div>
 
         {/* Right: Icons */}
-        <div className="flex items-center" style={{ gap: '8px' }}>
+        <div className="flex items-center" style={{ gap: '4px' }}>
           <button
             onClick={() => setSearchOpen(true)}
             className="flex items-center justify-center hover:opacity-70 transition-opacity"
             style={{ width: '36px', height: '36px' }}
             aria-label="Search"
           >
-            <Search size={20} strokeWidth={1.8} color="#1a1a1a" />
+            <TfiSearch size={18} color="#1a1a1a" />
           </button>
           <button
             className="flex items-center justify-center hover:opacity-70 transition-opacity"
             style={{ width: '36px', height: '36px' }}
             aria-label="Account"
           >
-            <User size={20} strokeWidth={1.8} color="#1a1a1a" />
+            <TfiUser size={18} color="#1a1a1a" />
           </button>
           <button
             className="flex items-center justify-center hover:opacity-70 transition-opacity"
             style={{ width: '36px', height: '36px' }}
             aria-label="Wishlist"
           >
-            <Heart size={20} strokeWidth={1.8} color="#1a1a1a" />
+            <TfiHeart size={18} color="#1a1a1a" />
           </button>
           <button
             onClick={() => setCartOpen(true)}
             className="relative flex items-center justify-center hover:opacity-70 transition-opacity"
             style={{ width: '36px', height: '36px' }}
-            aria-label="Shopping bag"
+            aria-label="Shopping cart"
           >
-            <ShoppingBag size={20} strokeWidth={1.8} color="#1a1a1a" />
+            <TfiShoppingCart size={18} color="#1a1a1a" />
             {cartCount > 0 && (
               <span
                 className="absolute flex items-center justify-center rounded-full"
@@ -165,7 +172,7 @@ const Header: React.FC = () => {
           style={{ width: '36px', height: '36px' }}
           aria-label="Menu"
         >
-          <Menu size={22} strokeWidth={1.8} color="#1a1a1a" />
+          <TfiAlignLeft size={20} color="#1a1a1a" />
         </button>
 
         <a href="/" className="absolute left-1/2 -translate-x-1/2" style={{ textDecoration: 'none' }}>
@@ -179,15 +186,15 @@ const Header: React.FC = () => {
             style={{ width: '36px', height: '36px' }}
             aria-label="Search"
           >
-            <Search size={20} strokeWidth={1.8} color="#1a1a1a" />
+            <TfiSearch size={18} color="#1a1a1a" />
           </button>
           <button
             onClick={() => setCartOpen(true)}
             className="relative flex items-center justify-center"
             style={{ width: '36px', height: '36px' }}
-            aria-label="Shopping bag"
+            aria-label="Shopping cart"
           >
-            <ShoppingBag size={20} strokeWidth={1.8} color="#1a1a1a" />
+            <TfiShoppingCart size={18} color="#1a1a1a" />
             {cartCount > 0 && (
               <span
                 className="absolute flex items-center justify-center rounded-full"
