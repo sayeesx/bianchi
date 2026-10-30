@@ -1,8 +1,10 @@
 import React from 'react';
-import { X, Plus, Minus, ShoppingBag } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { RuneIcon } from './RuneIcon';
 import { useStore } from '../context/StoreContext';
 
 const CartDrawer: React.FC = () => {
+  const navigate = useNavigate();
   const { cartItems, cartOpen, setCartOpen, removeFromCart, updateQuantity, cartTotal } = useStore();
 
   if (!cartOpen) return null;
@@ -37,7 +39,7 @@ const CartDrawer: React.FC = () => {
           }}
         >
           <div className="flex items-center gap-2">
-            <ShoppingBag size={20} />
+            <RuneIcon name="money-shopping-bag" size={20} />
             <span style={{ fontSize: '15px', fontWeight: 700, letterSpacing: '0.04em' }}>
               YOUR BAG
             </span>
@@ -65,7 +67,7 @@ const CartDrawer: React.FC = () => {
             style={{ background: 'none', border: 'none', cursor: 'pointer' }}
             aria-label="Close cart"
           >
-            <X size={22} />
+            <RuneIcon name="indicators-x" size={20} />
           </button>
         </div>
 
@@ -76,7 +78,7 @@ const CartDrawer: React.FC = () => {
               className="flex flex-col items-center justify-center h-full"
               style={{ padding: '40px 20px', textAlign: 'center' }}
             >
-              <ShoppingBag size={48} color="#ddd" strokeWidth={1} />
+              <RuneIcon name="money-shopping-bag" size={48} color="#ddd" />
               <p
                 style={{
                   fontSize: '16px',
@@ -159,7 +161,7 @@ const CartDrawer: React.FC = () => {
                         }}
                         aria-label="Remove item"
                       >
-                        <X size={14} />
+                        <RuneIcon name="indicators-x" size={14} />
                       </button>
                     </div>
                     <p style={{ fontSize: '11px', color: '#999', marginTop: '3px' }}>
@@ -184,7 +186,7 @@ const CartDrawer: React.FC = () => {
                             justifyContent: 'center',
                           }}
                         >
-                          <Minus size={12} />
+                          <RuneIcon name="indicators-minus" size={12} />
                         </button>
                         <span
                           style={{
@@ -209,7 +211,7 @@ const CartDrawer: React.FC = () => {
                             justifyContent: 'center',
                           }}
                         >
-                          <Plus size={12} />
+                          <RuneIcon name="indicators-plus" size={12} />
                         </button>
                       </div>
                       {/* Price */}
@@ -257,6 +259,7 @@ const CartDrawer: React.FC = () => {
                 cursor: 'pointer',
                 textTransform: 'uppercase',
               }}
+              onClick={() => { setCartOpen(false); navigate('/checkout'); window.scrollTo(0,0); }}
             >
               PROCEED TO CHECKOUT
             </button>

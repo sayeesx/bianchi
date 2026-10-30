@@ -1,14 +1,7 @@
 import React from 'react';
+import { shopByPrice } from '../data/banners';
 
-// Placeholder images via picsum — small, compressed
-const priceDrop = 'https://picsum.photos/seed/pricedrop2/560/400';
-
-const shopByPrice = [
-  { label: 'BUY 3 TOPWEAR', image: 'https://picsum.photos/seed/sbp1/300/360', href: '/topwear-offer' },
-  { label: 'BUY 2 BOTTOM WEAR', image: 'https://picsum.photos/seed/sbp2/300/360', href: '/bottomwear-offer' },
-  { label: 'SUNGLASSES', image: 'https://picsum.photos/seed/sbp3/300/360', href: '/sunglasses' },
-  { label: 'PERFUMES', image: 'https://picsum.photos/seed/sbp4/300/360', href: '/perfumes' },
-];
+const priceDrop = 'https://d2d5n4ft74bagm.cloudfront.net/media/banners/a43a7c64-ff79-4d11-b0f8-dd22ebe08cea/1791804358_desktop.jpeg';
 
 const ShopByPrice: React.FC = () => {
   return (
@@ -18,7 +11,7 @@ const ShopByPrice: React.FC = () => {
         <div className="shop-price-layout">
           {/* Big card — hidden on mobile via CSS */}
           <a
-            href="/price-drop"
+            href="/sale"
             className="shop-price-big-card"
             style={{ display: 'none' }}
             onClick={e => e.preventDefault()}
@@ -42,6 +35,11 @@ const ShopByPrice: React.FC = () => {
                 />
                 <div className="shop-price-label">
                   <p>{item.label}</p>
+                  {item.price && (
+                    <span style={{ fontSize: '11px', fontWeight: 800, color: '#fff', marginTop: '2px', display: 'block' }}>
+                      {item.price}
+                    </span>
+                  )}
                 </div>
               </a>
             ))}

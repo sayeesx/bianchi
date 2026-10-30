@@ -1,50 +1,22 @@
 import React from 'react';
-
-// Placeholder images via picsum — small, compressed, single CDN (no external brand CDN requests)
-const priceItems = [
-  {
-    label: 'BUY 3 TOPWEAR',
-    price: '@ ₹2699',
-    image: 'https://picsum.photos/seed/topwear/160/192',
-    href: '/topwear-offer',
-  },
-  {
-    label: 'BUY 2 BOTTOM WEAR',
-    price: '@ ₹2899',
-    image: 'https://picsum.photos/seed/bottomwear/160/192',
-    href: '/bottomwear-offer',
-  },
-  {
-    label: 'SUNGLASSES',
-    price: '₹999',
-    image: 'https://picsum.photos/seed/sunglasses/160/192',
-    href: '/sunglasses',
-  },
-  {
-    label: 'PERFUMES',
-    price: '50% OFF',
-    isOff: true,
-    image: 'https://picsum.photos/seed/perfumes/160/192',
-    href: '/perfumes',
-  },
-];
+import { shopByPrice } from '../data/banners';
 
 const PromoBanners: React.FC = () => {
   return (
     <section className="never-before-section">
-      {/* Hero banner — image only, no text overlay */}
+      {/* Hero banner — full width editorial */}
       <div className="never-before-hero">
         <img
-          src="https://picsum.photos/seed/pricedrop/1200/400"
-          alt="Price Drop"
+          src="https://d2d5n4ft74bagm.cloudfront.net/media/banners/a43a7c64-ff79-4d11-b0f8-dd22ebe08cea/1791804358_desktop.jpeg"
+          alt="Never Before Prices"
           className="never-before-hero-img"
           loading="lazy"
         />
       </div>
 
-      {/* Price cards strip — image only, no text labels on top of images */}
+      {/* Price cards strip */}
       <div className="never-before-cards">
-        {priceItems.map((item) => (
+        {shopByPrice.map((item) => (
           <a
             key={item.label}
             href={item.href}

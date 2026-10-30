@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Heart } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { RuneIcon } from './RuneIcon';
 import type { Product } from '../data/products';
 import { useStore } from '../context/StoreContext';
 
@@ -8,6 +9,7 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const navigate = useNavigate();
   const { addToCart, toggleWishlist, isWishlisted } = useStore();
   const [hovered, setHovered] = useState(false);
   const [addedSize, setAddedSize] = useState<string | null>(null);
@@ -27,6 +29,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     toggleWishlist(product.id);
   };
 
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigate(`/product/${product.slug}`);
+    window.scrollTo(0, 0);
+  };
+
   return (
     <a
       href={`/product/${product.slug}`}
@@ -34,7 +42,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       style={{ textDecoration: 'none', color: 'inherit' }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      onClick={e => e.preventDefault()}
+      onClick={handleClick}
     >
       {/* Image container */}
       <div
@@ -113,12 +121,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           }}
           aria-label="Add to wishlist"
         >
-          <Heart
-            size={14}
-            fill={wishlisted ? '#e63329' : 'none'}
-            color={wishlisted ? '#e63329' : '#1a1a1a'}
-            strokeWidth={2}
-          />
+          <RuneIcon name="tools-heart" size={14} type={wishlisted ? 'fill' : 'normal'} className={wishlisted ? 'wishlist-active' : ''} color={wishlisted ? '#e63329' : '#1a1a1a'} />
         </button>
 
         {/* Add to bag - appears on hover (always visible on mobile) */}

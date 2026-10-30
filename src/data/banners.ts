@@ -14,7 +14,7 @@ export const heroBanners: Banner[] = [
   {
     id: '1',
     title: 'BISMIL',
-    subtitle: 'The Collab You\'ve Been Waiting For',
+    subtitle: "The Collab You've Been Waiting For",
     image: 'https://d2d5n4ft74bagm.cloudfront.net/media/banners/89394399-c477-419c-92b0-928e2e7c6991/1792752467_desktop.jpeg',
     mobileImage: 'https://d2d5n4ft74bagm.cloudfront.net/media/banners/89394399-c477-419c-92b0-928e2e7c6991/1792752467_mobile.jpeg',
     href: '/bismil',
@@ -101,8 +101,8 @@ export const shopByOccasion = [
 ];
 
 export const shopByPrice = [
-  { label: 'BUY 3 TOPWEAR', image: 'https://d2d5n4ft74bagm.cloudfront.net/media/shop-by-price/90f15fc8-103d-4062-9974-5d00e65e508e/1792147799.jpeg?w=90', href: '/topwear-offer' },
-  { label: 'BUY 2 BOTTOM WEAR', image: 'https://d2d5n4ft74bagm.cloudfront.net/media/shop-by-price/879b08dc-fe6b-47ff-8916-a97e5e7318a5/1792147829.jpeg?w=90', href: '/bottomwear-offer' },
-  { label: 'SUNGLASSES', image: 'https://d2d5n4ft74bagm.cloudfront.net/media/shop-by-price/63abd977-30f5-44e3-8a08-9e9cfb066352/1792661126.jpeg?w=90', href: '/sunglasses' },
-  { label: 'PERFUMES', image: 'https://d2d5n4ft74bagm.cloudfront.net/media/shop-by-price/cc252370-be54-476c-bb4b-d2f9a60266a1/1792661138.jpeg?w=90', href: '/perfumes' },
+  { label: 'BUY 3 TOPWEAR', price: '@ ₹2699', image: 'https://d2d5n4ft74bagm.cloudfront.net/media/shop-by-price/90f15fc8-103d-4062-9974-5d00e65e508e/1792147799.jpeg?w=90', href: '/topwear-offer' },
+  { label: 'BUY 2 BOTTOM WEAR', price: '@ ₹2899', image: 'https://d2d5n4ft74bagm.cloudfront.net/media/shop-by-price/879b08dc-fe6b-47ff-8916-a97e5e7318a5/1792147829.jpeg?w=90', href: '/bottomwear-offer' },
+  { label: 'SUNGLASSES', price: '₹999', image: 'https://d2d5n4ft74bagm.cloudfront.net/media/shop-by-price/63abd977-30f5-44e3-8a08-9e9cfb066352/1792661126.jpeg?w=90', href: '/sunglasses' },
+  { label: 'PERFUMES', price: '50% OFF', isOff: true, image: 'https://d2d5n4ft74bagm.cloudfront.net/media/shop-by-price/cc252370-be54-476c-bb4b-d2f9a60266a1/1792661138.jpeg?w=90', href: '/perfumes' },
 ];

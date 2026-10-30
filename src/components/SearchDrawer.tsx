@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { X, Search } from 'lucide-react';
+import { RuneIcon } from './RuneIcon';
 import { useStore } from '../context/StoreContext';
 import { products } from '../data/products';
 
@@ -58,7 +58,7 @@ const SearchDrawer: React.FC = () => {
           className="max-w-[1440px] mx-auto flex items-center px-4"
           style={{ height: '64px', gap: '12px' }}
         >
-          <Search size={20} color="#999" />
+          <RuneIcon name="tools-search" size={20} color="#999" />
           <input
             ref={inputRef}
             type="text"
@@ -79,7 +79,7 @@ const SearchDrawer: React.FC = () => {
             style={{ background: 'none', border: 'none', cursor: 'pointer' }}
             aria-label="Close search"
           >
-            <X size={22} color="#1a1a1a" />
+            <RuneIcon name="indicators-x" size={22} color="#1a1a1a" />
           </button>
         </div>
 

@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown } from 'lucide-react';
-import {
-  TfiSearch,
-  TfiUser,
-  TfiHeart,
-  TfiShoppingCart,
-  TfiAlignLeft,
-} from 'react-icons/tfi';
+import { useNavigate } from 'react-router-dom';
+import { RuneIcon } from './RuneIcon';
 import { useStore } from '../context/StoreContext';
 import { navItems } from '../data/navigation';
 import MegaMenu from './MegaMenu';
@@ -14,13 +8,14 @@ import MegaMenu from './MegaMenu';
 const BianchiLogo = () => (
   <span
     style={{
-      fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      fontFamily: "'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
       fontSize: '22px',
       fontWeight: 900,
       color: '#1a1a1a',
       letterSpacing: '0.05em',
       textTransform: 'uppercase',
       lineHeight: 1,
+      display: 'inline-block',
     }}
   >
     BIANCHI
@@ -28,7 +23,8 @@ const BianchiLogo = () => (
 );
 
 const Header: React.FC = () => {
-  const { cartCount, setCartOpen, setSearchOpen, setMobileMenuOpen } = useStore();
+  const navigate = useNavigate();
+  const { cartCount, setCartOpen, setMobileMenuOpen } = useStore();
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
 
@@ -44,27 +40,30 @@ const Header: React.FC = () => {
       style={{
         backgroundColor: '#ffffff',
         borderBottom: '1px solid #e8e8e3',
-        boxShadow: scrolled ? '0 2px 8px rgba(0,0,0,0.08)' : 'none',
+        boxShadow: scrolled ? '0 2px 10px rgba(0,0,0,0.06)' : 'none',
         transition: 'box-shadow 0.2s ease',
         zIndex: 100,
       }}
+      onMouseLeave={() => setActiveMenu(null)}
     >
-      {/* Desktop Header */}
-      <div
-        style={{ height: '60px' }}
-        className="hidden md:flex items-center justify-between px-8 max-w-[1440px] mx-auto w-full"
-      >
-        {/* Left: Nav */}
+      {/* Desktop Header — ONLY shown on desktop via CSS, icons pushed to right */}
+      <div className="header-desktop-bar">
+        {/* Left: Nav items */}
         <nav
           className="flex items-center"
-          style={{ gap: '0' }}
-          onMouseLeave={() => setActiveMenu(null)}
+          style={{ gap: '0', flexShrink: 0, zIndex: 11 }}
         >
           {navItems.map((item) => (
             <div
               key={item.label}
               className="relative"
-              onMouseEnter={() => setActiveMenu(item.label)}
+              onMouseEnter={() => {
+                if (item.megaMenu) {
+                  setActiveMenu(item.label);
+                } else {
+                  setActiveMenu(null);
+                }
+              }}
             >
               <a
                 href={item.href}
@@ -74,18 +73,23 @@ const Header: React.FC = () => {
                   fontWeight: 600,
                   letterSpacing: '0.07em',
                   color: item.badge === 'SALE' ? '#e63329' : '#1a1a1a',
-                  padding: '0 16px',
+                  padding: '0 13px',
                   height: '60px',
                   textDecoration: 'none',
                   whiteSpace: 'nowrap',
                   borderBottom: activeMenu === item.label ? '2px solid #1a1a1a' : '2px solid transparent',
-                  transition: 'border-color 0.15s ease',
+                  transition: 'border-color 0.15s ease, color 0.15s ease',
                 }}
-                onClick={(e) => e.preventDefault()}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActiveMenu(null);
+                  navigate(item.href);
+                }}
               >
                 {item.label}
                 {item.megaMenu && (
-                  <ChevronDown
+                  <RuneIcon
+                    name="arrows-chevron-down"
                     size={12}
                     style={{
                       marginLeft: '3px',
@@ -99,47 +103,97 @@ const Header: React.FC = () => {
           ))}
         </nav>
 
-        {/* Center: Logo */}
+        {/* Center: Brand Logo — mathematically centered */}
         <div
-          className="absolute left-1/2 -translate-x-1/2"
-          style={{ zIndex: 10, backgroundColor: '#fff', padding: '0 16px' }}
+          style={{
+            position: 'absolute',
+            left: '50%',
+            top: '50%',
+            transform: 'translate(-50%, -50%)',
+            zIndex: 10,
+            backgroundColor: '#fff',
+            padding: '0 16px',
+            pointerEvents: 'auto',
+          }}
         >
-          <a href="/" style={{ textDecoration: 'none' }}>
+          <a
+            href="/"
+            style={{ textDecoration: 'none' }}
+            onClick={(e) => {
+              e.preventDefault();
+              setActiveMenu(null);
+              navigate('/');
+            }}
+          >
             <BianchiLogo />
           </a>
         </div>
 
-        {/* Right: Icons */}
-        <div className="flex items-center" style={{ gap: '4px' }}>
+        {/* Right: Action Icons — aligned to far right with minimal right gap */}
+        <div
+          style={{
+            marginLeft: 'auto',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px',
+            flexShrink: 0,
+            zIndex: 11,
+          }}
+        >
+          {/* Search — opens dedicated full Search Page */}
           <button
-            onClick={() => setSearchOpen(true)}
+            onClick={() => {
+              setActiveMenu(null);
+              navigate('/search');
+            }}
             className="flex items-center justify-center hover:opacity-70 transition-opacity"
-            style={{ width: '36px', height: '36px' }}
+            style={{ width: '38px', height: '38px', background: 'none', border: 'none', cursor: 'pointer' }}
             aria-label="Search"
+            title="Search"
           >
-            <TfiSearch size={18} color="#1a1a1a" />
+            <RuneIcon name="tools-search" size={19} color="#1a1a1a" />
           </button>
+
+          {/* Account / Profile — Phone -> OTP -> Profile */}
           <button
+            onClick={() => {
+              setActiveMenu(null);
+              navigate('/account');
+            }}
             className="flex items-center justify-center hover:opacity-70 transition-opacity"
-            style={{ width: '36px', height: '36px' }}
+            style={{ width: '38px', height: '38px', background: 'none', border: 'none', cursor: 'pointer' }}
             aria-label="Account"
+            title="My Account"
           >
-            <TfiUser size={18} color="#1a1a1a" />
+            <RuneIcon name="indicators-circle-user" size={19} color="#1a1a1a" />
           </button>
+
+          {/* Wishlist */}
           <button
+            onClick={() => {
+              setActiveMenu(null);
+              navigate('/wishlist');
+            }}
             className="flex items-center justify-center hover:opacity-70 transition-opacity"
-            style={{ width: '36px', height: '36px' }}
+            style={{ width: '38px', height: '38px', background: 'none', border: 'none', cursor: 'pointer' }}
             aria-label="Wishlist"
+            title="Wishlist"
           >
-            <TfiHeart size={18} color="#1a1a1a" />
+            <RuneIcon name="tools-heart" size={19} color="#1a1a1a" />
           </button>
+
+          {/* Shopping Cart Drawer */}
           <button
-            onClick={() => setCartOpen(true)}
+            onClick={() => {
+              setActiveMenu(null);
+              setCartOpen(true);
+            }}
             className="relative flex items-center justify-center hover:opacity-70 transition-opacity"
-            style={{ width: '36px', height: '36px' }}
+            style={{ width: '38px', height: '38px', background: 'none', border: 'none', cursor: 'pointer' }}
             aria-label="Shopping cart"
+            title="Cart"
           >
-            <TfiShoppingCart size={18} color="#1a1a1a" />
+            <RuneIcon name="money-shopping-cart" size={19} color="#1a1a1a" />
             {cartCount > 0 && (
               <span
                 className="absolute flex items-center justify-center rounded-full"
@@ -161,40 +215,53 @@ const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Header */}
-      <div
-        style={{ height: '56px' }}
-        className="flex md:hidden items-center justify-between px-4"
-      >
+      {/* Mobile Header — ONLY shown on mobile/tablets <= 900px via CSS */}
+      <div className="header-mobile-bar">
         <button
           onClick={() => setMobileMenuOpen(true)}
           className="flex items-center justify-center"
-          style={{ width: '36px', height: '36px' }}
+          style={{ width: '36px', height: '36px', background: 'none', border: 'none', cursor: 'pointer' }}
           aria-label="Menu"
         >
-          <TfiAlignLeft size={20} color="#1a1a1a" />
+          <RuneIcon name="layouts-menu" size={20} color="#1a1a1a" />
         </button>
 
-        <a href="/" className="absolute left-1/2 -translate-x-1/2" style={{ textDecoration: 'none' }}>
+        <a
+          href="/"
+          className="absolute left-1/2 -translate-x-1/2"
+          style={{ textDecoration: 'none' }}
+          onClick={(e) => {
+            e.preventDefault();
+            navigate('/');
+          }}
+        >
           <BianchiLogo />
         </a>
 
-        <div className="flex items-center" style={{ gap: '4px' }}>
+        <div className="flex items-center" style={{ gap: '2px' }}>
           <button
-            onClick={() => setSearchOpen(true)}
+            onClick={() => navigate('/search')}
             className="flex items-center justify-center"
-            style={{ width: '36px', height: '36px' }}
+            style={{ width: '36px', height: '36px', background: 'none', border: 'none', cursor: 'pointer' }}
             aria-label="Search"
           >
-            <TfiSearch size={18} color="#1a1a1a" />
+            <RuneIcon name="tools-search" size={18} color="#1a1a1a" />
+          </button>
+          <button
+            onClick={() => navigate('/account')}
+            className="flex items-center justify-center"
+            style={{ width: '36px', height: '36px', background: 'none', border: 'none', cursor: 'pointer' }}
+            aria-label="Account"
+          >
+            <RuneIcon name="indicators-circle-user" size={18} color="#1a1a1a" />
           </button>
           <button
             onClick={() => setCartOpen(true)}
             className="relative flex items-center justify-center"
-            style={{ width: '36px', height: '36px' }}
+            style={{ width: '36px', height: '36px', background: 'none', border: 'none', cursor: 'pointer' }}
             aria-label="Shopping cart"
           >
-            <TfiShoppingCart size={18} color="#1a1a1a" />
+            <RuneIcon name="money-shopping-cart" size={18} color="#1a1a1a" />
             {cartCount > 0 && (
               <span
                 className="absolute flex items-center justify-center rounded-full"
@@ -216,10 +283,11 @@ const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* MegaMenu */}
-      {activeMenu && navItems.find(n => n.label === activeMenu)?.megaMenu && (
+      {/* MegaMenu Dropdown — full width underneath header bar with exact alignment */}
+      {activeMenu && navItems.find((n) => n.label === activeMenu)?.megaMenu && (
         <MegaMenu
-          sections={navItems.find(n => n.label === activeMenu)!.megaMenu!}
+          activeLabel={activeMenu}
+          sections={navItems.find((n) => n.label === activeMenu)!.megaMenu!}
           onClose={() => setActiveMenu(null)}
         />
       )}

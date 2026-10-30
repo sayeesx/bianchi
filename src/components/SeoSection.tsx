@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { RuneIcon } from './RuneIcon';
 
 const topCategories = [
   'T-shirts', 'Shirts', 'Joggers', 'Shorts', 'Trousers',
@@ -195,13 +195,7 @@ const SeoSection: React.FC = () => {
             }}
           >
             {expanded ? 'Read less' : 'Read more'}
-            <ChevronDown
-              size={14}
-              style={{
-                transform: expanded ? 'rotate(180deg)' : 'rotate(0)',
-                transition: 'transform 0.2s',
-              }}
-            />
+            <RuneIcon name="arrows-chevron-down" size={14} style={{ transform: expanded ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.2s' }} />
           </button>
         </div>
       </div>

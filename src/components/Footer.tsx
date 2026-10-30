@@ -1,15 +1,5 @@
 import React from 'react';
-import {
-  TfiTruck,
-  TfiReload,
-  TfiShield,
-  TfiLock,
-  TfiFacebook,
-  TfiInstagram,
-  TfiLinkedin,
-  TfiApple,
-  TfiAndroid,
-} from 'react-icons/tfi';
+import { RuneIcon, BrandLogo } from './RuneIcon';
 
 const footerLinks = {
   COMPANY: [
@@ -58,10 +48,10 @@ const Footer: React.FC = () => {
       <div className="footer-trust">
         <div className="footer-trust-grid">
           {[
-            { icon: <TfiTruck size={20} />, title: 'FREE SHIPPING', sub: 'On orders above ₹999' },
-            { icon: <TfiReload size={20} />, title: 'EASY RETURNS', sub: '15-day hassle-free returns' },
-            { icon: <TfiShield size={20} />, title: '100% AUTHENTIC', sub: 'Original products only' },
-            { icon: <TfiLock size={20} />, title: 'SECURE PAYMENT', sub: '100% secure checkout' },
+            { icon: <RuneIcon name="money-truck" size={20} />, title: 'FREE SHIPPING', sub: 'On orders above ₹999' },
+            { icon: <RuneIcon name="schedule-refresh-cw" size={20} />, title: 'EASY RETURNS', sub: '15-day hassle-free returns' },
+            { icon: <RuneIcon name="identity-shield-check" size={20} />, title: '100% AUTHENTIC', sub: 'Original products only' },
+            { icon: <RuneIcon name="identity-lock" size={20} />, title: 'SECURE PAYMENT', sub: '100% secure checkout' },
           ].map((item, i) => (
             <div key={i} className="footer-trust-item">
               <span style={{ color: '#1a1a1a', display: 'flex' }}>{item.icon}</span>
@@ -118,9 +108,9 @@ const Footer: React.FC = () => {
               {section === 'COMPANY' && (
                 <div className="flex items-center gap-3 mt-5">
                   {[
-                    { icon: <TfiFacebook size={16} />, href: 'https://facebook.com', label: 'Facebook' },
-                    { icon: <TfiInstagram size={16} />, href: 'https://instagram.com', label: 'Instagram' },
-                    { icon: <TfiLinkedin size={16} />, href: 'https://linkedin.com', label: 'LinkedIn' },
+                    { icon: <BrandLogo name="facebook" size={16} />, href: 'https://facebook.com', label: 'Facebook' },
+                    { icon: <BrandLogo name="instagram" size={16} />, href: 'https://instagram.com', label: 'Instagram' },
+                    { icon: <BrandLogo name="linkedin" size={16} />, href: 'https://linkedin.com', label: 'LinkedIn' },
                   ].map((social) => (
                     <a
                       key={social.label}
@@ -174,7 +164,7 @@ const Footer: React.FC = () => {
                     }}
                     onClick={e => e.preventDefault()}
                   >
-                    <TfiApple size={16} />
+                    <BrandLogo name="apple" size={16} />
                     App Store
                   </a>
                   <a
@@ -193,7 +183,7 @@ const Footer: React.FC = () => {
                     }}
                     onClick={e => e.preventDefault()}
                   >
-                    <TfiAndroid size={16} />
+                    <BrandLogo name="android" size={16} />
                     Play Store
                   </a>
                 </div>
